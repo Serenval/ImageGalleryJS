@@ -13,13 +13,17 @@ export class UIManager {
       this.modalClose();
     });
 
-    this.galleryElement.addEventListener('click', function(event) {
-      const galleryItem = event.target.closest('gallery-item');
+    //When using regular function declarations in event listeners, this loses its context.
+    // That's why we need to use only arrow functions to access 'this'
+    this.galleryElement.addEventListener('click', (event) => {
+      const galleryItem = event.target.closest('.gallery-item');
       if (galleryItem) {
         const imageId = galleryItem.dataset.imageId;
+        console.log(this.gallery.images.length);
         const image = this.gallery.getImageById(imageId);
         if (image) {
           this.openModal(image);
+          console.log(image.id);
         }
       }
     });
@@ -47,4 +51,10 @@ export class UIManager {
       this.galleryElement.appendChild(galleryItem);
     });
   };
+
+  openModal(image) {
+    this.modalImage.src = `/images/${image.name}`;
+    this.modalImage.alt = image.name.split('.')[0];
+    this.modal.classList.add('show');
+  }
 }
