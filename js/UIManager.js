@@ -26,6 +26,25 @@ export class UIManager {
   };
 
   render() {
+    this.galleryElement.innerHTML = '';
 
+    this.gallery.filteredImages.forEach(image => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      galleryItem.dataset.category = image.category;
+      galleryItem.dataset.imageId = image.id;
+
+      const img = document.createElement('img');
+      img.src = `/images/${image.name}`;
+      img.alt = image.name.split('.')[0];
+
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.textContent = 'View';
+
+      galleryItem.appendChild(img);
+      galleryItem.appendChild(overlay);
+      this.galleryElement.appendChild(galleryItem);
+    });
   };
 }

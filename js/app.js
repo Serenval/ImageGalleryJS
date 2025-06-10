@@ -13,6 +13,7 @@ class ImageGalleryApp {
     console.log('initialization');
     this.gallery = new Gallery();
     this.uiManager = new UIManager(this.gallery);
+    this.uiManager.render();
   }
 
 }
