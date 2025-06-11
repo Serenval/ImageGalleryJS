@@ -9,8 +9,8 @@ export class UIManager {
   };
 
   bindEvents() {
-    this.modalClose.addEventListener('click', function() {
-      this.modalClose();
+    this.modalClose.addEventListener('click', () => {
+      this.closeModal();
     });
 
     //When using regular function declarations in event listeners, this loses its context.
@@ -56,5 +56,11 @@ export class UIManager {
     this.modalImage.src = `/images/${image.name}`;
     this.modalImage.alt = image.name.split('.')[0];
     this.modal.classList.add('show');
+  }
+
+  closeModal() {
+    this.modal.classList.remove('show');
+    this.modalImage.src = '';
+    this.modalImage.alt = '';
   }
 }
