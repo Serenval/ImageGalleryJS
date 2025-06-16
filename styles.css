@@ -50,11 +50,16 @@ h1 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
+  gap: 1rem;
 }
 
 .filter-btn {
+  border: 1px solid var(--gray-light);
+  border-radius: 0.25rem;
+  cursor: pointer;
   position: relative;
-  padding: 0.1rem 0.2rem;
+  padding: 0.2rem 0.4rem;
 }
 
 .filter-btn:hover,
