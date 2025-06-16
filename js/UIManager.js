@@ -1,6 +1,7 @@
 export class UIManager {
   constructor(gallery) {
     this.gallery = gallery;
+    this.filterBtns = document.querySelectorAll('.filter-btn');
     this.galleryElement = document.getElementById('gallery');
     this.modal = document.getElementById('modalContainer');
     this.modalImage = document.getElementById('modalImage');
@@ -9,6 +10,15 @@ export class UIManager {
   };
 
   bindEvents() {
+    this.filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e)=> {
+        this.filterBtns.forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        this.gallery.filterImages(e.target.dataset.filter);
+        this.render();
+      });
+    });
+    
     this.modalClose.addEventListener('click', () => {
       this.closeModal();
     });

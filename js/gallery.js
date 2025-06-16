@@ -3,6 +3,7 @@ import { Image } from "./image.js";
 export class Gallery {
   constructor() {
     this.images = [];
+    this.currentFilter = 'all';
     this.filteredImages = [];
     this.selectedIndex = 0;
     this.setImageList();
@@ -34,5 +35,15 @@ export class Gallery {
 
   getImageById(id) {
     return this.images.find(image => image.id === id);
+  }
+
+  filterImages(option) {
+    this.currentFilter = option;
+    if (this.currentFilter == 'all') {
+      this.filteredImages = this.images;
+    } else {
+      this.filteredImages = this.images.filter(image => image.category === this.currentFilter);
+    }
+    return this.filteredImages;
   }
 }
