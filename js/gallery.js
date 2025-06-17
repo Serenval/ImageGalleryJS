@@ -14,8 +14,18 @@ export class Gallery {
     return image;
   }
 
-  selectNext() {
-    const nextImage = this.selectedIndex + 1;
+  navigateLeft() {
+    let nextImageIndex = this.selectedIndex - 1;
+    if (this.filteredImages.length != 0 && nextImageIndex >= 0 && nextImageIndex <= this.filteredImages.length - 1) {
+      this.selectedIndex = nextImageIndex;
+    }
+  }
+
+  navigateRight() {
+    let nextImageIndex = this.selectedIndex + 1;
+    if (this.filteredImages.length != 0 && nextImageIndex <= this.filteredImages.length - 1) {
+      this.selectedIndex = nextImageIndex;
+    }
   }
 
   setImageList() {
@@ -34,7 +44,11 @@ export class Gallery {
   }
 
   getImageById(id) {
-    return this.images.find(image => image.id === id);
+    return this.filteredImages.find(image => image.id === id);
+  }
+
+  getImageByIndex(index) {
+    return this.filteredImages[index];
   }
 
   filterImages(option) {

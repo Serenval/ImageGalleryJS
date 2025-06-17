@@ -15,6 +15,7 @@ export class UIManager {
         this.filterBtns.forEach(btn => btn.classList.remove('active'));
         e.target.classList.add('active');
         this.gallery.filterImages(e.target.dataset.filter);
+        this.gallery.selectedIndex = 0;
         this.render();
       });
     });
@@ -63,6 +64,7 @@ export class UIManager {
   };
 
   openModal(image) {
+    this.gallery.selectedIndex = this.gallery.filteredImages.indexOf(image);
     this.modalImage.src = `/images/${image.name}`;
     this.modalImage.alt = image.name.split('.')[0];
     this.modal.classList.add('show');
