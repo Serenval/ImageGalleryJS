@@ -1,6 +1,5 @@
 export class KeyboardManager {
   constructor(uiManager) {
-    this.isModalOpen = false;
     this.uiManager = uiManager;
     this.gallery = uiManager.gallery;
     this.bindEvents();
@@ -8,7 +7,6 @@ export class KeyboardManager {
 
   bindEvents() {
     document.addEventListener('keydown', (e) => {
-      this.isModalOpen = this.uiManager.modal.classList.contains('show');
       switch(e.key) {
         case 'ArrowLeft':
           e.preventDefault();
@@ -23,7 +21,7 @@ export class KeyboardManager {
   }
 
   navigateLeft() {
-    if (this.isModalOpen) {
+    if (this.uiManager.isModalOpen()) {
       this.gallery.navigateLeft();
       const image = this.gallery.getImageByIndex(this.gallery.selectedIndex);
       this.uiManager.openModal(image);
@@ -31,7 +29,7 @@ export class KeyboardManager {
   }
 
   navigateRight() {
-    if (this.isModalOpen) {
+    if (this.uiManager.isModalOpen()) {
       this.gallery.navigateRight();
       const image = this.gallery.getImageByIndex(this.gallery.selectedIndex);
       this.uiManager.openModal(image);

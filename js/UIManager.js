@@ -63,6 +63,10 @@ export class UIManager {
     });
   };
 
+  isModalOpen() {
+    return this.modal.classList.contains('show');
+  }
+
   openModal(image) {
     this.gallery.selectedIndex = this.gallery.filteredImages.indexOf(image);
     this.modalImage.src = `/images/${image.name}`;
